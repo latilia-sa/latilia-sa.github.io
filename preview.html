@@ -250,8 +250,8 @@
       <div class="bars drop absolute top-0 left-6" aria-hidden="true"><i></i><i></i><i></i></div>
       <!-- أيقونة الهوية كخلفية -->
       <img src="img/icon-cream.svg" alt="" aria-hidden="true" class="absolute -left-6 top-8 w-28 sm:top-10 sm:w-36 opacity-[.13] pointer-events-none" />
-      <div class="hero-in relative px-4 pt-5 pb-12 sm:px-5 sm:pt-7 sm:pb-24">
-        <p class="text-[10px] sm:text-[11px] tracking-[.22em] text-cream/70 mb-1.5 sm:mb-2" dir="ltr" style="text-align:right">SPECIALTY ITALIAN RESTAURANT</p>
+      <div class="hero-in relative px-4 pt-4 pb-10 sm:px-5 sm:pt-7 sm:pb-24">
+        <p class="hidden sm:block text-[11px] tracking-[.22em] text-cream/70 mb-2" dir="ltr" style="text-align:right">SPECIALTY ITALIAN RESTAURANT</p>
         <h1 class="font-display font-bold text-[22px] sm:text-[26px] leading-[1.35]">باستا إيطالية طازجة<br/><span class="text-[#F7A577]">بلمسة أحسائية</span></h1>
         <p class="text-cream/85 text-[13px] sm:text-sm mt-1.5 sm:mt-2">اختر طبقك، وأكّد طلبك عبر واتساب خلال ثوانٍ.</p>
         <div class="hero-chips flex gap-2 mt-3 sm:mt-4 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
@@ -261,11 +261,11 @@
         </div>
       </div>
       <!-- خط معالم روما من الهوية -->
-      <img src="img/skyline.svg" alt="" aria-hidden="true" class="absolute bottom-0 inset-x-0 w-full h-11 sm:h-20 object-contain object-bottom opacity-30 pointer-events-none" />
+      <img src="img/skyline.svg" alt="" aria-hidden="true" class="absolute bottom-0 inset-x-0 w-full h-9 sm:h-20 object-contain object-bottom opacity-30 pointer-events-none" />
     </section>
 
     <!-- ===================== FILTER TABS ===================== -->
-    <div id="tabsBar" class="sticky z-20 -mx-4 px-4 py-2 mt-2 sm:mt-3 bg-cream/90 backdrop-blur-md" style="top: var(--hdr, 86px)">
+    <div id="tabsBar" class="sticky z-20 -mx-4 px-4 py-1.5 sm:py-2 mt-1.5 sm:mt-3 bg-cream/90 backdrop-blur-md" style="top: var(--hdr, 86px)">
     <nav class="relative flex gap-2 overflow-x-auto no-scrollbar -mx-4 px-4" id="tabs" aria-label="التصنيفات">
       <span id="tabInd" class="tab-ind" aria-hidden="true"></span>
       <button class="tab tab-active" data-filter="all">الكل</button>
@@ -607,7 +607,7 @@
   function renderMenu() {
     $('#menuGrid').innerHTML = MENU.map((item, idx) => `
       <article class="reveal bg-cream-light rounded-[24px] sm:rounded-[26px] p-2 sm:p-2.5 shadow-card border border-sage-line/60" data-cat="${item.cat}">
-        <div class="img-wrap relative aspect-[16/11] sm:aspect-[4/3] rounded-[18px] sm:rounded-[20px] overflow-hidden">
+        <div class="img-wrap relative aspect-[16/10] sm:aspect-[4/3] rounded-[18px] sm:rounded-[20px] overflow-hidden">
           <img src="${item.img}" alt="${item.name}" width="800" height="600" class="dish-img w-full h-full object-cover" loading="eager" fetchpriority="${idx < 2 ? 'high' : 'auto'}"
                onload="imgDone(this)"
                onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=this.src.replace('.webp','.jpg');}else{imgDone(this);this.style.display='none';this.nextElementSibling.classList.remove('hidden');}" />
