@@ -78,7 +78,17 @@
     }
   </style>
   <style>
-    html { -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
+    html { -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    .hero-chips .chip { flex: none; white-space: nowrap; }
+    /* الشاشات القصيرة (مثل متصفح سناب): إخفاء شارات الواجهة لتظهر الأطباق أسرع */
+    @media (max-width: 639px) and (max-height: 720px) {
+      .hero-chips { display: none !important; }
+      .hero-in { padding-top: .85rem !important; padding-bottom: 2.1rem !important; }
+      .img-wrap { aspect-ratio: 16 / 9 !important; }
+      .dish-en { display: none !important; }
+    }
+    #tabsBar { transition: box-shadow .25s ease; }
+    #tabsBar.stuck { box-shadow: 0 8px 18px -14px rgba(31,36,31,.4); }
     body { font-family: 'Tajawal', system-ui, sans-serif; }
     input, select, textarea { font-size: 16px !important; } /* prevents iOS zoom */
     .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -201,7 +211,7 @@
     .chk-ico { flex: none; display: grid; place-items: center; border-radius: 999px; background: #fff; box-shadow: 0 2px 6px -2px rgba(31,36,31,.25); }
     .chk-price { flex: none; background: #DD6227; color: #fff; font-weight: 800; font-size: 12px; padding: 5px 10px; border-radius: 999px; font-family: 'Readex Pro', Tajawal, sans-serif; }
     .chk-tick { flex: none; width: 28px; height: 28px; border-radius: 999px; background: #FFF0D8; color: #606D39; display: grid; place-items: center; }
-    .chk-step { width: 34px; height: 34px; border-radius: 12px; background: #FFF0D8; color: #4F5A2D; display: grid; place-items: center; transition: transform .15s ease, opacity .2s; }
+    .chk-step { width: 40px; height: 40px; border-radius: 12px; background: #FFF0D8; color: #4F5A2D; display: grid; place-items: center; transition: transform .15s ease, opacity .2s; }
     .chk-step:active { transform: scale(.9); }
     .chk-step:disabled { opacity: .35; }
     .chk-step svg { width: 18px; height: 18px; }
@@ -221,9 +231,9 @@
 
   <!-- ===================== HEADER ===================== -->
   <header id="siteHeader" class="sticky top-0 z-30 bg-cream/90 backdrop-blur-md border-b border-sage-line/70">
-    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+    <div class="max-w-5xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
       <a href="#" class="block" aria-label="لتيليا - Latilia Specialty Italian Restaurant">
-        <img src="img/logo.svg" alt="لتيليا" width="150" height="40" class="h-10 w-auto" />
+        <img src="img/logo.svg" alt="لتيليا" width="150" height="40" class="h-9 sm:h-10 w-auto" />
       </a>
       <button data-action="checkout" class="relative w-11 h-11 rounded-full bg-cream-light border border-sage-line grid place-items-center text-sage-dark" aria-label="السلة">
         <i data-lucide="shopping-bag" class="w-5 h-5"></i>
@@ -231,7 +241,7 @@
       </button>
     </div>
     <!-- Free delivery ribbon -->
-    <div class="ribbon text-white text-center text-[13px] font-bold py-2 px-4">
+    <div class="ribbon text-white text-center text-[12px] sm:text-[13px] font-bold py-1.5 sm:py-2 px-4">
       <span class="truck">🚚</span>
       <span class="mx-1">التوصيل مجاني داخل الأحساء فقط</span>
     </div>
@@ -240,35 +250,37 @@
   <main class="max-w-5xl mx-auto px-4 pb-36">
 
     <!-- ===================== HERO ===================== -->
-    <section class="hero-pattern rounded-[28px] mt-4 text-cream relative overflow-hidden">
+    <section class="hero-pattern rounded-[24px] sm:rounded-[28px] mt-3 sm:mt-4 text-cream relative overflow-hidden">
       <!-- الأشرطة الثلاثة -->
       <div class="bars drop absolute top-0 left-6" aria-hidden="true"><i></i><i></i><i></i></div>
       <!-- أيقونة الهوية كخلفية -->
-      <img src="img/icon-cream.svg" alt="" aria-hidden="true" class="absolute -left-6 top-10 w-36 opacity-[.13] pointer-events-none" />
-      <div class="hero-in relative px-5 pt-7 pb-24">
-        <p class="text-[11px] tracking-[.25em] text-cream/70 mb-2" dir="ltr" style="text-align:right">SPECIALTY ITALIAN RESTAURANT</p>
-        <h1 class="font-display font-bold text-[26px] leading-[1.35]">باستا إيطالية طازجة<br/><span class="text-[#F7A577]">بلمسة أحسائية</span></h1>
-        <p class="text-cream/85 text-sm mt-2">اختر طبقك، وأكّد طلبك عبر واتساب خلال ثوانٍ.</p>
-        <div class="flex flex-wrap gap-2 mt-4">
+      <img src="img/icon-cream.svg" alt="" aria-hidden="true" class="absolute -left-6 top-8 w-28 sm:top-10 sm:w-36 opacity-[.13] pointer-events-none" />
+      <div class="hero-in relative px-4 pt-4 pb-10 sm:px-5 sm:pt-7 sm:pb-24">
+        <p class="hidden sm:block text-[11px] tracking-[.22em] text-cream/70 mb-2" dir="ltr" style="text-align:right">SPECIALTY ITALIAN RESTAURANT</p>
+        <h1 class="font-display font-bold text-[22px] sm:text-[26px] leading-[1.35]">باستا إيطالية طازجة<br/><span class="text-[#F7A577]">بلمسة أحسائية</span></h1>
+        <p class="text-cream/85 text-[13px] sm:text-sm mt-1.5 sm:mt-2">اختر طبقك، وأكّد طلبك عبر واتساب خلال ثوانٍ.</p>
+        <div class="hero-chips flex gap-2 mt-3 sm:mt-4 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
           <span class="chip"><i data-lucide="chef-hat" class="w-3.5 h-3.5"></i> تُحضّر طازجة</span>
           <span class="chip"><i data-lucide="truck" class="w-3.5 h-3.5"></i> توصيل مجاني بالأحساء</span>
           <span class="chip"><i data-lucide="message-circle" class="w-3.5 h-3.5"></i> تأكيد عبر واتساب</span>
         </div>
       </div>
       <!-- خط معالم روما من الهوية -->
-      <img src="img/skyline.svg" alt="" aria-hidden="true" class="absolute bottom-0 inset-x-0 w-full h-20 object-contain object-bottom opacity-30 pointer-events-none" />
+      <img src="img/skyline.svg" alt="" aria-hidden="true" class="absolute bottom-0 inset-x-0 w-full h-9 sm:h-20 object-contain object-bottom opacity-30 pointer-events-none" />
     </section>
 
     <!-- ===================== FILTER TABS ===================== -->
-    <nav class="relative flex gap-2 overflow-x-auto no-scrollbar mt-5 -mx-4 px-4" id="tabs" aria-label="التصنيفات">
+    <div id="tabsBar" class="sticky z-20 -mx-4 px-4 py-1.5 sm:py-2 mt-1.5 sm:mt-3 bg-cream/90 backdrop-blur-md" style="top: var(--hdr, 86px)">
+    <nav class="relative flex gap-2 overflow-x-auto no-scrollbar -mx-4 px-4" id="tabs" aria-label="التصنيفات">
       <span id="tabInd" class="tab-ind" aria-hidden="true"></span>
       <button class="tab tab-active" data-filter="all">الكل</button>
       <button class="tab tab-idle" data-filter="pasta">باستا 🍝</button>
       <button class="tab tab-idle" data-filter="lasagna">لازانيا 🧀</button>
     </nav>
+    </div>
 
     <!-- ===================== PRODUCT GRID ===================== -->
-    <section id="menuGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4" aria-label="قائمة الأطباق"></section>
+    <section id="menuGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 mt-2" aria-label="قائمة الأطباق"></section>
 
     <!-- ===================== FOOTER ===================== -->
     <footer class="text-center mt-12 text-xs text-muted">
@@ -328,14 +340,14 @@
 
             <div>
               <label for="fName" class="label">الاسم الكريم</label>
-              <input id="fName" name="name" type="text" class="field" placeholder="مثال: محمد" autocomplete="name" />
+              <input id="fName" name="name" type="text" enterkeyhint="next" class="field" placeholder="مثال: محمد" autocomplete="name" />
               <p class="err" data-err="name">فضلاً اكتب اسمك بالحروف فقط (بدون أرقام أو رموز)</p>
             </div>
 
             <div>
               <label for="fPhone" class="label">رقم الجوال</label>
               <div class="relative">
-                <input id="fPhone" name="phone" type="tel" inputmode="numeric" dir="ltr" maxlength="10" class="field text-right pl-12" placeholder="05xxxxxxxx" autocomplete="tel" />
+                <input id="fPhone" name="phone" type="tel" inputmode="numeric" enterkeyhint="next" dir="ltr" maxlength="10" class="field text-right pl-12" placeholder="05xxxxxxxx" autocomplete="tel" />
                 <span id="phoneOk" class="phone-ok" aria-hidden="true">
                   <svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
                 </span>
@@ -353,7 +365,7 @@
 
             <div id="otherDistrictWrap" class="hidden">
               <label for="fDistrictOther" class="label">اسم الحي</label>
-              <input id="fDistrictOther" type="text" class="field" placeholder="اكتب اسم الحي" />
+              <input id="fDistrictOther" type="text" enterkeyhint="done" class="field" placeholder="اكتب اسم الحي" />
               <p class="err" data-err="districtOther">فضلاً اكتب اسم الحي</p>
             </div>
 
@@ -378,7 +390,7 @@
 
             <div>
               <label for="fNotes" class="label">ملاحظات التحضير <span class="text-muted font-normal">(اختياري)</span></label>
-              <textarea id="fNotes" name="notes" rows="2" class="field h-auto py-3 resize-none" placeholder="مثال: بدون جوز، حار زيادة…"></textarea>
+              <textarea id="fNotes" name="notes" rows="2" enterkeyhint="done" class="field h-auto py-3 resize-none" placeholder="مثال: بدون جوز، حار زيادة…"></textarea>
             </div>
           </form>
 
@@ -588,31 +600,31 @@
   function ctrlHTML(id) {
     const q = cart[id] || 0;
     if (!q) {
-      return `<button data-action="add" data-id="${id}" class="h-11 min-w-[142px] px-4 rounded-2xl bg-rust hover:bg-rust-dark active:scale-[.96] transition text-white font-bold text-sm flex items-center justify-center gap-1.5">${SVG.plus}<span>إضافة للسلة</span></button>`;
+      return `<button data-action="add" data-id="${id}" class="h-12 min-w-[146px] px-4 rounded-2xl bg-rust hover:bg-rust-dark active:scale-[.96] transition text-white font-bold text-sm flex items-center justify-center gap-1.5">${SVG.plus}<span>إضافة للسلة</span></button>`;
     }
-    return `<div class="h-11 min-w-[142px] rounded-2xl bg-rust-soft border border-rust/20 flex items-center justify-between p-1 overflow-hidden">
-        <button data-action="inc" data-id="${id}" class="w-9 h-9 rounded-xl bg-rust text-white grid place-items-center active:scale-90 transition" aria-label="زيادة">${SVG.plus}</button>
+    return `<div class="h-12 min-w-[146px] rounded-2xl bg-rust-soft border border-rust/20 flex items-center justify-between p-1 overflow-hidden">
+        <button data-action="inc" data-id="${id}" class="w-10 h-10 rounded-xl bg-rust text-white grid place-items-center active:scale-90 transition" aria-label="زيادة">${SVG.plus}</button>
         <span data-qty class="inline-block font-display font-bold text-lg text-rust-dark w-8 text-center" aria-live="polite">${q}</span>
-        <button data-action="dec" data-id="${id}" class="w-9 h-9 rounded-xl bg-white text-rust-dark grid place-items-center active:scale-90 transition border border-rust/20" aria-label="تقليل">${q === 1 ? SVG.trash : SVG.minus}</button>
+        <button data-action="dec" data-id="${id}" class="w-10 h-10 rounded-xl bg-white text-rust-dark grid place-items-center active:scale-90 transition border border-rust/20" aria-label="تقليل">${q === 1 ? SVG.trash : SVG.minus}</button>
       </div>`;
   }
 
   function renderMenu() {
     $('#menuGrid').innerHTML = MENU.map((item, idx) => `
-      <article class="reveal bg-cream-light rounded-[26px] p-2.5 shadow-card border border-sage-line/60" data-cat="${item.cat}">
-        <div class="img-wrap relative aspect-[4/3] rounded-[20px] overflow-hidden">
+      <article class="reveal bg-cream-light rounded-[24px] sm:rounded-[26px] p-2 sm:p-2.5 shadow-card border border-sage-line/60" data-cat="${item.cat}">
+        <div class="img-wrap relative aspect-[16/10] sm:aspect-[4/3] rounded-[18px] sm:rounded-[20px] overflow-hidden">
           <img src="${item.img}" alt="${item.name}" width="800" height="600" class="dish-img w-full h-full object-cover" loading="eager" fetchpriority="${idx < 2 ? 'high' : 'auto'}"
                onload="imgDone(this)"
                onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=this.src.replace('.webp','.jpg');}else{imgDone(this);this.style.display='none';this.nextElementSibling.classList.remove('hidden');}" />
           <div class="hidden absolute inset-0 grid place-items-center text-6xl">🍝</div>
           ${item.badge ? `<span class="absolute top-3 right-3 bg-white/95 text-rust-dark text-xs font-bold px-3 py-1.5 rounded-full shadow">${item.badge}</span>` : ''}
         </div>
-        <div class="px-2 pt-3.5 pb-1.5">
-          <h3 class="font-display font-bold text-[19px] text-ink leading-snug">${item.name}</h3>
-          <p class="text-[11px] tracking-wider text-muted mt-0.5 text-right" dir="ltr">${item.en}</p>
-          <p class="text-sm text-muted leading-relaxed mt-2">${item.desc}</p>
-          <div class="flex items-center justify-between mt-4 gap-3">
-            <div class="font-display leading-none"><span class="text-[26px] font-bold text-ink">${item.price}</span> <span class="text-sm text-muted">ر.س</span></div>
+        <div class="px-1.5 sm:px-2 pt-3 sm:pt-3.5 pb-1">
+          <h3 class="font-display font-bold text-[18px] sm:text-[19px] text-ink leading-snug">${item.name}</h3>
+          <p class="dish-en text-[11px] tracking-wider text-muted mt-0.5 text-right" dir="ltr">${item.en}</p>
+          <p class="text-[13.5px] sm:text-sm text-muted leading-relaxed mt-1.5 sm:mt-2 line-clamp-2">${item.desc}</p>
+          <div class="flex items-center justify-between mt-3 sm:mt-4 gap-3">
+            <div class="font-display leading-none"><span class="text-[24px] sm:text-[26px] font-bold text-ink">${item.price}</span> <span class="text-sm text-muted">ر.س</span></div>
             <div data-ctrl="${item.id}">${ctrlHTML(item.id)}</div>
           </div>
           ${item.cat === 'pasta' ? `<div data-chk="${item.id}" class="mt-2.5">${chkHTML(item.id)}</div>` : ''}
@@ -634,7 +646,7 @@
           ${ico}
           <span class="flex-1 min-w-0 leading-tight">
             <span class="block font-bold text-[14px] text-ink">${compact ? 'أضف دجاج لهذا الطبق' : 'أضف دجاج لطبقك'}</span>
-            ${compact ? '' : `<span class="block text-[11px] text-muted mt-0.5">${sub}</span>`}
+            ${compact ? '' : `<span class="block truncate text-[11px] text-muted mt-0.5">${sub}</span>`}
           </span>
           <span class="chk-price"><bdi>+${CHICKEN_PRICE}</bdi> ر.س</span>
         </button>`;
@@ -644,7 +656,7 @@
           ${ico}
           <span class="flex-1 min-w-0 leading-tight">
             <span class="block font-bold text-[14px]">مع دجاج</span>
-            ${compact ? '' : `<span class="block text-[11px] opacity-80 mt-0.5"><bdi>+${CHICKEN_PRICE}</bdi> ر.س · اضغط للإزالة</span>`}
+            ${compact ? '' : `<span class="block truncate text-[11px] opacity-80 mt-0.5"><bdi>+${CHICKEN_PRICE}</bdi> ر.س · اضغط للإزالة</span>`}
           </span>
           <span class="chk-tick" aria-hidden="true"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
         </button>`;
@@ -653,8 +665,8 @@
     return `<div class="chk-on ${h} w-full rounded-2xl flex items-center gap-2.5 px-2">
         ${ico}
         <span class="flex-1 min-w-0 leading-tight">
-          <span class="block font-bold text-[14px]">${all ? `دجاج على كل الأطباق (${q})` : `دجاج على <span data-chkn>${c}</span> من ${q}`}</span>
-          ${compact ? '' : `<span class="block text-[11px] opacity-80 mt-0.5"><bdi>+${c * CHICKEN_PRICE}</bdi> ر.س${all ? '' : ` · والباقي بدون دجاج`}</span>`}
+          <span class="block truncate font-bold text-[14px]">${all ? `دجاج على كل الأطباق (${q})` : `دجاج على <span data-chkn>${c}</span> من ${q}`}</span>
+          ${compact ? '' : `<span class="block truncate text-[11px] opacity-80 mt-0.5"><bdi>+${c * CHICKEN_PRICE}</bdi> ر.س${all ? '' : ` · والباقي بدون دجاج`}</span>`}
         </span>
         <span class="flex items-center gap-1">
           <button data-action="chk-dec" data-id="${id}" class="chk-step" aria-label="تقليل أطباق الدجاج">${c === 1 ? SVG.trash : SVG.minus}</button>
@@ -769,9 +781,9 @@
             <p class="text-sm text-muted font-display">${lineTotal(i)} ر.س</p>
           </div>
           <div class="flex items-center gap-1 bg-cream-deep rounded-xl p-1">
-            <button data-action="inc" data-id="${i.id}" class="w-8 h-8 rounded-lg bg-white grid place-items-center text-rust-dark border border-sage-line" aria-label="زيادة">${SVG.plus}</button>
+            <button data-action="inc" data-id="${i.id}" class="w-9 h-9 rounded-lg bg-white grid place-items-center text-rust-dark border border-sage-line" aria-label="زيادة">${SVG.plus}</button>
             <span class="w-6 text-center font-display font-bold">${i.qty}</span>
-            <button data-action="dec" data-id="${i.id}" class="w-8 h-8 rounded-lg bg-white grid place-items-center text-rust-dark border border-sage-line" aria-label="تقليل">${i.qty === 1 ? SVG.trash : SVG.minus}</button>
+            <button data-action="dec" data-id="${i.id}" class="w-9 h-9 rounded-lg bg-white grid place-items-center text-rust-dark border border-sage-line" aria-label="تقليل">${i.qty === 1 ? SVG.trash : SVG.minus}</button>
           </div>
         </div>
         ${isPasta(i.id) ? `<div class="mt-2">${chkHTML(i.id, true)}</div>` : ''}
@@ -943,8 +955,11 @@
     const p = normalizePhone($('#fPhone').value);
     const ok = /^05\d{8}$/.test(p) && !isFakePhone(p);
     const el = $('#phoneOk');
-    if (ok && !el.classList.contains('on')) buzz(10);
+    const becameOk = ok && !el.classList.contains('on');
+    if (becameOk) buzz(10);
     el.classList.toggle('on', ok);
+    // رقم مكتمل وصحيح أثناء الكتابة → نغلق الكيبورد لأن الحقول التالية اختيارات (حي/دفع)
+    if (becameOk && document.activeElement === $('#fPhone')) setTimeout(() => $('#fPhone').blur(), 250);
   }
 
   /* =========================================================
@@ -1079,6 +1094,7 @@
       });
       moveTabInd(t, true);
       applyFilter(f);
+      scrollToGrid();
       buzz(6);
       return;
     }
@@ -1155,13 +1171,42 @@
     cards.forEach(c => io.observe(c));
   }
 
+  // ارتفاع الهيدر الفعلي → شريط التبويبات يلتصق تحته مباشرة على أي جوال
+  function setHdr() { document.documentElement.style.setProperty('--hdr', $('#siteHeader').offsetHeight + 'px'); }
+
   (function headerShadow() {
-    const h = $('#siteHeader');
+    const h = $('#siteHeader'), bar = $('#tabsBar');
     let ticking = false;
-    addEventListener('scroll', () => {
-      if (ticking) return; ticking = true;
-      requestAnimationFrame(() => { h.classList.toggle('scrolled', scrollY > 8); ticking = false; });
-    }, { passive: true });
+    const update = () => {
+      const stuck = bar.getBoundingClientRect().top <= h.offsetHeight + 1 && scrollY > 8;
+      bar.classList.toggle('stuck', stuck);
+      h.classList.toggle('scrolled', scrollY > 8 && !stuck);   // ظل واحد فقط: تحت التبويبات عند التصاقها
+      ticking = false;
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  })();
+
+  // عند اختيار تصنيف والعميل نازل في الصفحة: نرجعه لأول طبق في التصنيف
+  function scrollToGrid() {
+    const grid = $('#menuGrid');
+    const offset = $('#siteHeader').offsetHeight + $('#tabsBar').offsetHeight + 6;
+    const top = grid.getBoundingClientRect().top + scrollY - offset;
+    if (scrollY > top + 4) window.scrollTo({ top, behavior: REDUCED ? 'auto' : 'smooth' });
+  }
+
+  /* =========================================================
+     لوحة المفاتيح في الجوال: زر «التالي» ينقل للحقل التالي، والحقل يبقى ظاهراً فوق الكيبورد
+     ========================================================= */
+  (function keyboardFlow() {
+    $('#fName').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); $('#fPhone').focus(); } });
+    $('#fPhone').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); e.target.blur(); $('#fDistrict').focus(); } });
+    $('#fDistrictOther').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); e.target.blur(); } });
+    // إبقاء الحقل في منتصف النافذة بعد ظهور الكيبورد
+    $('#orderForm').addEventListener('focusin', e => {
+      const el = e.target;
+      if (!el.matches('input:not([type=radio]), textarea, select')) return;
+      setTimeout(() => el.scrollIntoView({ block: 'center', behavior: REDUCED ? 'auto' : 'smooth' }), 320);
+    });
   })();
   $('#fDistrict').addEventListener('change', toggleOther);
   // مسح الخطأ (الإطار الأحمر + الرسالة) بمجرد أن يبدأ العميل بتصحيح الحقل
@@ -1186,6 +1231,9 @@
   setTimeout(() => document.querySelectorAll('#menuGrid img').forEach(imgDone), 3500);
 
   initReveal();
+  setHdr();
+  addEventListener('resize', setHdr);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setHdr);
 
   // شبكة أمان للحركة: بعد 2.5 ثانية من ظهور الصفحة فعلياً، كل محتوى الشاشة يظهر مهما حدث
   (function motionFailsafe() {
