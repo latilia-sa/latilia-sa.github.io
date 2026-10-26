@@ -81,7 +81,12 @@
     html { -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     .hero-chips .chip { flex: none; white-space: nowrap; }
     /* الشاشات القصيرة (مثل متصفح سناب): إخفاء شارات الواجهة لتظهر الأطباق أسرع */
-    @media (max-width: 639px) and (max-height: 720px) { .hero-chips { display: none; } }
+    @media (max-width: 639px) and (max-height: 720px) {
+      .hero-chips { display: none !important; }
+      .hero-in { padding-top: .85rem !important; padding-bottom: 2.1rem !important; }
+      .img-wrap { aspect-ratio: 16 / 9 !important; }
+      .dish-en { display: none !important; }
+    }
     #tabsBar { transition: box-shadow .25s ease; }
     #tabsBar.stuck { box-shadow: 0 8px 18px -14px rgba(31,36,31,.4); }
     body { font-family: 'Tajawal', system-ui, sans-serif; }
@@ -616,7 +621,7 @@
         </div>
         <div class="px-1.5 sm:px-2 pt-3 sm:pt-3.5 pb-1">
           <h3 class="font-display font-bold text-[18px] sm:text-[19px] text-ink leading-snug">${item.name}</h3>
-          <p class="text-[11px] tracking-wider text-muted mt-0.5 text-right" dir="ltr">${item.en}</p>
+          <p class="dish-en text-[11px] tracking-wider text-muted mt-0.5 text-right" dir="ltr">${item.en}</p>
           <p class="text-[13.5px] sm:text-sm text-muted leading-relaxed mt-1.5 sm:mt-2 line-clamp-2">${item.desc}</p>
           <div class="flex items-center justify-between mt-3 sm:mt-4 gap-3">
             <div class="font-display leading-none"><span class="text-[24px] sm:text-[26px] font-bold text-ink">${item.price}</span> <span class="text-sm text-muted">ر.س</span></div>
